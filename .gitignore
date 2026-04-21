@@ -2,3 +2,6 @@
 *.vwf
 *.qws
 *.qsf
+db/
+output_files/
+incremental_db/
