@@ -1,0 +1,14 @@
+
+State Machine - |uart_tx|tx_state
+Name tx_state.tx_stop tx_state.tx_bit7 tx_state.tx_bit6 tx_state.tx_bit5 tx_state.tx_bit4 tx_state.tx_bit3 tx_state.tx_bit2 tx_state.tx_bit1 tx_state.tx_bit0 tx_state.tx_start tx_state.tx_idle 
+tx_state.tx_idle 0 0 0 0 0 0 0 0 0 0 0 
+tx_state.tx_start 0 0 0 0 0 0 0 0 0 1 1 
+tx_state.tx_bit0 0 0 0 0 0 0 0 0 1 0 1 
+tx_state.tx_bit1 0 0 0 0 0 0 0 1 0 0 1 
+tx_state.tx_bit2 0 0 0 0 0 0 1 0 0 0 1 
+tx_state.tx_bit3 0 0 0 0 0 1 0 0 0 0 1 
+tx_state.tx_bit4 0 0 0 0 1 0 0 0 0 0 1 
+tx_state.tx_bit5 0 0 0 1 0 0 0 0 0 0 1 
+tx_state.tx_bit6 0 0 1 0 0 0 0 0 0 0 1 
+tx_state.tx_bit7 0 1 0 0 0 0 0 0 0 0 1 
+tx_state.tx_stop 1 0 0 0 0 0 0 0 0 0 1 

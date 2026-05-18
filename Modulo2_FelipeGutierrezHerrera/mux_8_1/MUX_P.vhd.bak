@@ -1,0 +1,29 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity MUX is 
+    port(
+        A, B, C, D, E, F, G, H: in std_logic;
+        S: in std_logic_vector (2 downto 0);
+        Z: out std_logic
+    );
+end MUX;
+
+architecture behav of MUX is 
+	begin 
+    process(A,B,C,D,E,F,G,H,S)
+    begin
+        case S is
+            when "000" => Z <= A;
+            when "001" => Z <= B;
+            when "010" => Z <= C;
+            when "011" => Z <= D;
+            when "100" => Z <= E;
+            when "101" => Z <= F;
+            when "110" => Z <= G;
+            when "111" => Z <= H;
+            when others => Z <= 'X';
+        end case;
+    end process;
+          
+end behav;

@@ -1,0 +1,5 @@
+|flip
+S => Y.DATAIN
+Y << S.DB_MAX_OUTPUT_PORT_TYPE
+
+

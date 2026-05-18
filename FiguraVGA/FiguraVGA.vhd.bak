@@ -1,0 +1,18 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity FiguraVGA is
+	port(clk: in std_logic;
+			r,g,b: out std_logic;
+			hs,vs: out std_logic
+		);
+
+end FiguraVGA;
+
+
+architecture behav of FiguraVGA is
+begin
+	
+
+
+end behav;

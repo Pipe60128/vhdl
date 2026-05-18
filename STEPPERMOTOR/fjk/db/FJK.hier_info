@@ -1,0 +1,9 @@
+|FJK
+J => Mux0.IN4
+K => Mux0.IN5
+CLK => Q_int.CLK
+RST => Q_int.ACLR
+Q <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+QN <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+
+

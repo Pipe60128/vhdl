@@ -1,0 +1,55 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+
+entity integracion is
+    port (
+        baud_clk : in std_logic;
+        btn_send_n : in std_logic;
+        tx_data : in std_logic_vector(7 downto 0);
+        tx_serial : out std_logic;  
+        rx_serial : in std_logic;
+        display : out std_logic_vector(6 downto 0);
+        leds : out std_logic_vector(7 downto 0)
+    );
+end integracion;
+
+architecture behavior of integracion is
+
+    component frec is
+        generic (pulse : integer := 25000000);
+        port (
+            clk : in std_logic;
+            clk_new : out std_logic
+        );
+    end component;
+    
+    
+    component uart_tx is
+        port(
+            baud_clk:in std_logic;
+            btn_send_n:in std_logic;
+            tx_data :in std_logic_vector(7 downto 0);
+            tx_serial:out std_logic
+            );
+    end component;
+    
+    component uart_rx is
+        port(
+
+        baud_clk: in std_logic;
+        rx_serial: in std_logic;
+        led : out std_logic_vector(7 downto 0);
+        sieteSegOut: out std_logic_vector(6 downto 0)
+        );
+    end component;
+    
+    signal new_baud_clk : std_logic;
+    signal byte_received : std_logic_vector(7 downto 0);
+
+begin
+	U0 : frec generic map (2604) port map(baud_clk, new_baud_clk);
+    U1 : uart_tx port map ( new_baud_clk, btn_send_n, tx_data, tx_serial );
+    U2 : uart_rx port map ( new_baud_clk, rx_serial, byte_received, display);
+    leds <= byte_received;
+end behavior;

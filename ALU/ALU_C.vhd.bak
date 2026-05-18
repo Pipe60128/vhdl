@@ -1,0 +1,58 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity ALU_C is 
+    port(A, B: in std_logic_vector (3 downto 0); --- 4-bit inputs
+        Cin: in std_logic; --- Carry input 
+        S: in std_logic_vector(2 downto 0);
+        Cout: out std_logic;
+        F: out std_logic_vector(3 downto 0)
+    );
+end ALU_C;
+
+
+architecture behav of ALU_C is
+    component full_adder is 
+        port (A, B: in std_logic_vector(3 downto 0);
+              Cin: in std_logic;
+				  Cout: out std_logic;
+              S: out std_logic_vector(3 downto 0)
+              );
+    end component;
+
+    component full_adder_rest is 
+        port (A, B: in std_logic_vector(3 downto 0);
+              Cin: in std_logic;
+				  Cout: out std_logic;
+              S: out std_logic_vector(3 downto 0)
+              );
+    end component;
+
+    signal f_add: std_logic_vector(3 downto 0);
+	 signal FAMINUSB: std_logic_vector(3 downto 0);
+	 signal FBMINUSA: std_logic_vector(3 downto 0);
+    signal Cout_APLUSB, Cout_AMINUSB, Cout_BMINUSA: std_logic;
+
+    begin 
+    uaplusb: full_adder port map (A, B, Cin,  Cout_APLUSB, f_add);
+    uaminusb: full_adder_rest port map (A, B, '1', Cout_AMINUSB, FAMINUSB);
+    ubminusa: full_adder_rest port map (B, A, '1', Cout_BMINUSA,FBMINUSA);
+	 
+        with S select
+                F <= "0000" when "000",
+                    FBMINUSA when "001",--- b-a
+                    FAMINUSB when "010", --- A-B
+                    f_add when "011",--- A+B
+                    A xor B when "100",
+                    A or B when "101",
+                    A and B when "110",
+                    "1111" when others;
+
+        with S select
+            Cout <= Cout_BMINUSA when "001",
+                    Cout_AMINUSB when "010",
+                    Cout_APLUSB when "011",
+                    '0' when others;
+
+    
+end behav;

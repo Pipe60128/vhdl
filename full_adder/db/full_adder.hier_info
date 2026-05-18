@@ -1,0 +1,26 @@
+|full_adder
+A => half_adder:u0.A
+B => half_adder:u0.B
+Cin => half_adder:u1.B
+Cout << Cout.DB_MAX_OUTPUT_PORT_TYPE
+S << half_adder:u1.sum
+
+
+|full_adder|half_adder:u0
+A => sum.IN0
+A => carry.IN0
+B => sum.IN1
+B => carry.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+carry <= carry.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|full_adder|half_adder:u1
+A => sum.IN0
+A => carry.IN0
+B => sum.IN1
+B => carry.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+carry <= carry.DB_MAX_OUTPUT_PORT_TYPE
+
+

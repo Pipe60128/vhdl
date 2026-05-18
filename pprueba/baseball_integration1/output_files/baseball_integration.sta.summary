@@ -1,0 +1,149 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'de10_clk'
+Slack : -7.195
+TNS   : -256.789
+
+Type  : Slow 1200mV 85C Model Setup 'frequency:GAME_CLOCK|temp_clk'
+Slack : -4.638
+TNS   : -116.475
+
+Type  : Slow 1200mV 85C Model Setup 'frequency:VGA_CLOCK|temp_clk'
+Slack : -2.129
+TNS   : -29.493
+
+Type  : Slow 1200mV 85C Model Setup 'frequency:TX_CLOCK|temp_clk'
+Slack : -1.908
+TNS   : -14.187
+
+Type  : Slow 1200mV 85C Model Hold 'frequency:GAME_CLOCK|temp_clk'
+Slack : 0.347
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'frequency:TX_CLOCK|temp_clk'
+Slack : 0.402
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'frequency:VGA_CLOCK|temp_clk'
+Slack : 0.518
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'de10_clk'
+Slack : 0.628
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'de10_clk'
+Slack : -3.000
+TNS   : -139.091
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'frequency:GAME_CLOCK|temp_clk'
+Slack : -1.403
+TNS   : -49.105
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'frequency:TX_CLOCK|temp_clk'
+Slack : -1.403
+TNS   : -44.896
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'frequency:VGA_CLOCK|temp_clk'
+Slack : -1.403
+TNS   : -28.060
+
+Type  : Slow 1200mV 0C Model Setup 'de10_clk'
+Slack : -6.593
+TNS   : -224.137
+
+Type  : Slow 1200mV 0C Model Setup 'frequency:GAME_CLOCK|temp_clk'
+Slack : -4.208
+TNS   : -104.580
+
+Type  : Slow 1200mV 0C Model Setup 'frequency:VGA_CLOCK|temp_clk'
+Slack : -1.853
+TNS   : -25.017
+
+Type  : Slow 1200mV 0C Model Setup 'frequency:TX_CLOCK|temp_clk'
+Slack : -1.654
+TNS   : -11.432
+
+Type  : Slow 1200mV 0C Model Hold 'frequency:GAME_CLOCK|temp_clk'
+Slack : 0.312
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'frequency:TX_CLOCK|temp_clk'
+Slack : 0.359
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'frequency:VGA_CLOCK|temp_clk'
+Slack : 0.460
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'de10_clk'
+Slack : 0.580
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'de10_clk'
+Slack : -3.000
+TNS   : -139.091
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'frequency:GAME_CLOCK|temp_clk'
+Slack : -1.403
+TNS   : -49.105
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'frequency:TX_CLOCK|temp_clk'
+Slack : -1.403
+TNS   : -44.896
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'frequency:VGA_CLOCK|temp_clk'
+Slack : -1.403
+TNS   : -28.060
+
+Type  : Fast 1200mV 0C Model Setup 'de10_clk'
+Slack : -2.414
+TNS   : -48.447
+
+Type  : Fast 1200mV 0C Model Setup 'frequency:GAME_CLOCK|temp_clk'
+Slack : -1.365
+TNS   : -28.118
+
+Type  : Fast 1200mV 0C Model Setup 'frequency:VGA_CLOCK|temp_clk'
+Slack : -0.327
+TNS   : -2.473
+
+Type  : Fast 1200mV 0C Model Setup 'frequency:TX_CLOCK|temp_clk'
+Slack : -0.263
+TNS   : -0.784
+
+Type  : Fast 1200mV 0C Model Hold 'frequency:GAME_CLOCK|temp_clk'
+Slack : 0.152
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'frequency:TX_CLOCK|temp_clk'
+Slack : 0.161
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'frequency:VGA_CLOCK|temp_clk'
+Slack : 0.190
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'de10_clk'
+Slack : 0.242
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'de10_clk'
+Slack : -3.000
+TNS   : -102.665
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'frequency:GAME_CLOCK|temp_clk'
+Slack : -1.000
+TNS   : -35.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'frequency:TX_CLOCK|temp_clk'
+Slack : -1.000
+TNS   : -32.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'frequency:VGA_CLOCK|temp_clk'
+Slack : -1.000
+TNS   : -20.000
+
+------------------------------------------------------------

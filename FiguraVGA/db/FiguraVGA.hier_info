@@ -1,0 +1,55 @@
+|FiguraVGA
+clk => frequency:U0.clk
+r[0] <= r_int.DB_MAX_OUTPUT_PORT_TYPE
+r[1] <= r_int.DB_MAX_OUTPUT_PORT_TYPE
+r[2] <= r_int.DB_MAX_OUTPUT_PORT_TYPE
+r[3] <= r_int.DB_MAX_OUTPUT_PORT_TYPE
+g[0] <= g_int.DB_MAX_OUTPUT_PORT_TYPE
+g[1] <= g_int.DB_MAX_OUTPUT_PORT_TYPE
+g[2] <= g_int.DB_MAX_OUTPUT_PORT_TYPE
+g[3] <= g_int.DB_MAX_OUTPUT_PORT_TYPE
+b[0] <= b_int.DB_MAX_OUTPUT_PORT_TYPE
+b[1] <= b_int.DB_MAX_OUTPUT_PORT_TYPE
+b[2] <= b_int.DB_MAX_OUTPUT_PORT_TYPE
+b[3] <= b_int.DB_MAX_OUTPUT_PORT_TYPE
+hs <= LessThan0.DB_MAX_OUTPUT_PORT_TYPE
+vs <= LessThan1.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FiguraVGA|frequency:U0
+clk => clock.CLK
+clk => cont[0].CLK
+clk => cont[1].CLK
+clk => cont[2].CLK
+clk => cont[3].CLK
+clk => cont[4].CLK
+clk => cont[5].CLK
+clk => cont[6].CLK
+clk => cont[7].CLK
+clk => cont[8].CLK
+clk => cont[9].CLK
+clk => cont[10].CLK
+clk => cont[11].CLK
+clk => cont[12].CLK
+clk => cont[13].CLK
+clk => cont[14].CLK
+clk => cont[15].CLK
+clk => cont[16].CLK
+clk => cont[17].CLK
+clk => cont[18].CLK
+clk => cont[19].CLK
+clk => cont[20].CLK
+clk => cont[21].CLK
+clk => cont[22].CLK
+clk => cont[23].CLK
+clk => cont[24].CLK
+clk => cont[25].CLK
+clk => cont[26].CLK
+clk => cont[27].CLK
+clk => cont[28].CLK
+clk => cont[29].CLK
+clk => cont[30].CLK
+clk => cont[31].CLK
+clk_new <= clock.DB_MAX_OUTPUT_PORT_TYPE
+
+

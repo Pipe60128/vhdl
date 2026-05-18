@@ -1,0 +1,35 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity DM74LS138 is 
+    port(
+        enabelin: in std_logic_Vector(2 downto 0);
+        S : in std_logic_Vector(2 downto 0);
+        y : out std_logic_Vector(7 downto 0)
+    );
+end DM74LS138;
+
+architecture behav of DM74LS138 is
+    signal enable: std_logic_vector(2 downto 0);
+    begin
+    enable <= (enabelin(2) and enabelin(1)) & ( not(enabelin(0)));
+    process(enable, S)
+    begin
+        if enable = "01" then 
+            case S is
+                when "000" => y <= "11111110";
+                when "001" => y <= "11111101";
+                when "010" => y <= "11111011";
+                when "011" => y <= "11110111";
+                when "100" => y <= "11101111";
+                when "101" => y <= "11011111";
+                when "110" => y <= "10111111";
+                when "111" => y <= "01111111";
+                when others => y <= (others => '1');
+            end case;
+        else
+            y <= (others => '1');
+        end if;
+    end process;
+
+end behav;  

@@ -1,0 +1,12 @@
+
+State Machine - |luces|state
+Name state.interapag state.inter state.der2 state.der1 state.der state.izq2 state.izq1 state.izq state.apagado 
+state.apagado 0 0 0 0 0 0 0 0 0 
+state.izq 0 0 0 0 0 0 0 1 1 
+state.izq1 0 0 0 0 0 0 1 0 1 
+state.izq2 0 0 0 0 0 1 0 0 1 
+state.der 0 0 0 0 1 0 0 0 1 
+state.der1 0 0 0 1 0 0 0 0 1 
+state.der2 0 0 1 0 0 0 0 0 1 
+state.inter 0 1 0 0 0 0 0 0 1 
+state.interapag 1 0 0 0 0 0 0 0 1 

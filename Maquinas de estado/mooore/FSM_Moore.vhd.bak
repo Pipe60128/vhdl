@@ -1,0 +1,61 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity FSM_Moore is 
+    port(
+        clk: in std_logic;
+        reset_a: in std_logic;
+        go: in std_logic;
+        y: out std_logic_vector(1 downto 0)
+    );
+end FSM_Moore;
+
+architecture behav of FSM_Moore is 
+    type state_type is (S0, S1, S2);
+    signal state: state_type;
+    signal y_temp: std_logic;
+
+    begin
+        estados: process(clk, reset_a)
+        begin
+            if reset_a = '1' then
+                state <= S0;
+            eslif rising_edge(clk) then
+                case state is 
+                    when S0 =>
+                        if go = '1' then
+                            state <= S1;
+                        else
+                            state <= S0;
+                        end if;
+                    when S1 =>
+                        if go = '1' then
+                            state <= S2;
+                        else
+                            state <= S1;
+                        end if;
+                    when S2 =>
+                        if go = '1' then
+                            state <= S2;
+                        else
+                            state <= S1;
+                        end if;
+                end case;
+            end if;
+        end process estados;
+
+        salida: process(state)
+        begin 
+            case state is
+                when S0 =>
+                    y_temp <= "00";
+                when S1 =>
+                    y_temp <= "01";
+                when S2 =>
+                    y_temp <= "10";
+                when others =>
+                    y_temp <= "11";
+            end case;
+        end process salida;
+        y <= y_temp;
+end behav;  

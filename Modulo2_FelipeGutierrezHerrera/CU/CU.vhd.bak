@@ -1,0 +1,155 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity MCU is 
+	port(clk, reset: in std_logic;
+		 opcode: in std_logic_vector(5 downto 0);
+		 
+		 PCWrite     : out STD_LOGIC;
+       PCWriteCond : out STD_LOGIC;
+       IorD        : out STD_LOGIC;
+       MemRead     : out STD_LOGIC;
+       MemWrite    : out STD_LOGIC;
+       IRWrite     : out STD_LOGIC;
+       MemtoReg    : out STD_LOGIC;
+       PCSource    : out STD_LOGIC_VECTOR(1 downto 0);
+       ALUOp       : out STD_LOGIC_VECTOR(1 downto 0);
+       ALUSrcB     : out STD_LOGIC_VECTOR(1 downto 0);
+       ALUSrcA     : out STD_LOGIC;
+       RegWrite    : out STD_LOGIC;
+       RegDst      : out STD_LOGIC
+	);
+end MCU;
+
+architecture behav of MCU is
+
+	 type state_type is (S0,S1,S2,S3,S4,S5,S6,S7,S8);
+	 
+	 signal current_state, next_state : state_type;
+begin
+	 
+	 process(clk, reset)
+    begin
+        if reset = '1' then
+            current_state <= S0;        
+        elsif rising_edge(clk) then
+            current_state <= next_state; 
+        end if;
+    end process;
+	 
+	 process(current_state, opcode)
+    begin
+	 case current_state is
+		 when S0 => 
+			next_state<= S1;
+			
+		when S1 => 
+			case opcode is
+				when "100011" | "101011"  => next_state <= S2;
+				when "000000" => next_state <= S6;  
+				when "000100"      => next_state <= S8; 
+				when others => next_state <= S0;
+		  end case;
+
+		when S2 =>
+			 case opcode is
+				  when "100011" => next_state <= S3;  
+				  when "101011" => next_state <= S5; 
+				  when others => next_state <= S0;
+			 end case;
+
+		when S3 =>  
+			 next_state <= S4; 
+
+		when S4 => 
+			 next_state <= S0;
+
+		when S5 =>  
+			 next_state <= S0; 
+			 
+		when S6 =>  
+			 next_state <= S7; 
+
+		when S7 => 
+			 next_state <= S0; 
+
+		when S8 =>  
+			 next_state <= S0;  
+
+		when others =>
+			 next_state <= S0;
+		end case;
+  end process;
+
+  process(current_state)
+    begin
+		 
+    PCWrite <= '0';
+	 PCWriteCond <= '0';
+	 IorD <= '0';
+    MemRead <= '0'; 
+	 MemWrite <= '0';
+    IRWrite <= '0';
+    MemtoReg <= '0';
+	 PCSource <= "00";
+	 ALUOp <= "00";
+    ALUSrcB <= "00";
+	 ALUSrcA <= '0';  
+	 RegWrite <= '0';
+    RegDst <= '0';
+
+        case current_state is
+            when S0 =>  
+                 MemRead  <= '1';
+                 ALUSrcA  <= '0';
+                 IorD     <= '0';
+                 IRWrite  <= '1';
+                 ALUSrcB  <= "01";
+                 ALUOp    <= "00";
+                 PCWrite  <= '1';
+                 PCSource <= "00";
+
+            when S1 =>  
+                 ALUSrcA  <= '0';
+                 ALUSrcB  <= "11";
+                 ALUOp    <= "00";
+
+            when S2 => 
+                 ALUSrcA  <= '1';
+                 ALUSrcB  <= "10";
+                 ALUOp    <= "00";
+
+            when S3 =>  
+                 MemRead  <= '1';
+                 IorD     <= '1';
+
+            when S4 =>  
+                 RegDst   <= '0';
+                 RegWrite <= '1';
+                 MemtoReg <= '1';
+
+            when S5 =>  
+                 MemWrite <= '1';
+                 IorD     <= '1';
+
+            when S6 => 
+                 ALUSrcA  <= '1';
+                 ALUSrcB  <= "00";
+                 ALUOp    <= "10";
+
+            when S7 =>  
+                 RegDst   <= '1';
+                 RegWrite <= '1';
+                 MemtoReg <= '0';
+
+            when S8 => 
+                 ALUSrcA     <= '1';
+                 ALUSrcB     <= "00";
+                 ALUOp       <= "01";
+                 PCWriteCond <= '1';
+                 PCSource    <= "01";
+        end case;
+    end process;
+  
+	 
+end behav;

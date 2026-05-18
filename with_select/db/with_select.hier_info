@@ -1,0 +1,7 @@
+|with_select
+S[0] => Y[0].DATAIN
+S[1] => Y[1].DATAIN
+Y[0] << S[0].DB_MAX_OUTPUT_PORT_TYPE
+Y[1] << S[1].DB_MAX_OUTPUT_PORT_TYPE
+
+

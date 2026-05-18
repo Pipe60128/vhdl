@@ -1,0 +1,23 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity MUX is 
+    port(
+        A, B: in std_logic_vector (3 downto 0);
+        S: in std_logic_vector (2 downto 0);
+        Z: out std_logic_vector (3 downto 0)
+    );
+end MUX;
+
+architecture behav of MUX_C is
+    begin 
+        with S select
+            Z <= A(0) when "000",
+                 A(1) when "001",
+                 A(2) when "010",
+                 A(3) when "011",
+                 B(0) when "100",
+                 B(1) when "101",
+                 B(2) when "110",
+                 B(3) when others;    
+end behav;

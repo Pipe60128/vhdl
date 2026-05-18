@@ -1,0 +1,27 @@
+
+State Machine - |inetgracion|uart_rx:U2|rx_state
+Name rx_state.RX_DONE rx_state.RX_BIT7 rx_state.RX_BIT6 rx_state.RX_BIT5 rx_state.RX_BIT4 rx_state.RX_BIT3 rx_state.RX_BIT2 rx_state.RX_BIT1 rx_state.RX_BIT0 rx_state.RX_IDLE 
+rx_state.RX_IDLE 0 0 0 0 0 0 0 0 0 0 
+rx_state.RX_BIT0 0 0 0 0 0 0 0 0 1 1 
+rx_state.RX_BIT1 0 0 0 0 0 0 0 1 0 1 
+rx_state.RX_BIT2 0 0 0 0 0 0 1 0 0 1 
+rx_state.RX_BIT3 0 0 0 0 0 1 0 0 0 1 
+rx_state.RX_BIT4 0 0 0 0 1 0 0 0 0 1 
+rx_state.RX_BIT5 0 0 0 1 0 0 0 0 0 1 
+rx_state.RX_BIT6 0 0 1 0 0 0 0 0 0 1 
+rx_state.RX_BIT7 0 1 0 0 0 0 0 0 0 1 
+rx_state.RX_DONE 1 0 0 0 0 0 0 0 0 1 
+
+State Machine - |inetgracion|uart_tx:U1|tx_state
+Name tx_state.tx_stop tx_state.tx_bit7 tx_state.tx_bit6 tx_state.tx_bit5 tx_state.tx_bit4 tx_state.tx_bit3 tx_state.tx_bit2 tx_state.tx_bit1 tx_state.tx_bit0 tx_state.tx_start tx_state.tx_idle 
+tx_state.tx_idle 0 0 0 0 0 0 0 0 0 0 0 
+tx_state.tx_start 0 0 0 0 0 0 0 0 0 1 1 
+tx_state.tx_bit0 0 0 0 0 0 0 0 0 1 0 1 
+tx_state.tx_bit1 0 0 0 0 0 0 0 1 0 0 1 
+tx_state.tx_bit2 0 0 0 0 0 0 1 0 0 0 1 
+tx_state.tx_bit3 0 0 0 0 0 1 0 0 0 0 1 
+tx_state.tx_bit4 0 0 0 0 1 0 0 0 0 0 1 
+tx_state.tx_bit5 0 0 0 1 0 0 0 0 0 0 1 
+tx_state.tx_bit6 0 0 1 0 0 0 0 0 0 0 1 
+tx_state.tx_bit7 0 1 0 0 0 0 0 0 0 0 1 
+tx_state.tx_stop 1 0 0 0 0 0 0 0 0 0 1 

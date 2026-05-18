@@ -1,0 +1,45 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity tb_MUX is
+end tb_MUX;
+
+architecture behav of tb_MUX is
+    component MUX 
+        port(
+            S : in std_logic_vector(1 downto 0);
+            A, B, C, D: in std_logic;
+            Z: out std_logic
+        );
+    end component;
+
+    signal S : std_logic_vector(1 downto 0);
+    signal A,B,C,D : std_logic;
+    signal Z : std_logic;
+
+    begin
+        uut: MUX port map (
+            S => S,
+            A => A,
+            B => B,
+            C => C,
+            D => D,
+            Z => Z
+        );
+
+    stim_proc: process
+    begin
+        ---ASIGNACION
+        A => '00';
+        B => '01';
+        C => '10';
+        D => '11';
+
+        S <= "00"; wait for 50 ns; ---Z =A
+        S <= "01"; wait for 50 ns;---Z=B
+        S <= "10"; wait for 50 ns;---Z=C
+        S <= "11"; wait for 50 ns;---Z=D
+
+        wait;
+        end process;
+end behav;

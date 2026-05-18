@@ -1,0 +1,17 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity MUX is 
+    port(
+        S: in std_logic_vector (1 downto 0);
+        A, B, C, D: in std_logic;
+        Z: out std_logic
+    );
+end MUX;
+
+architecture behav of MUX is
+    begin 
+        Z <= ( A and not(S(1)) AND NOT(S(0))) OR (B AND NOT(S(1)) AND S((0))) OR 
+                (C AND S(1) AND NOT(S(0))) OR (D AND S(1) AND S(0));
+    
+end behav;

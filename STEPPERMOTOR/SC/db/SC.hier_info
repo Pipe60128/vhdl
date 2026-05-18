@@ -1,0 +1,31 @@
+|SC
+CLK => FJK:I0.CLK
+CLK => FJK:I1.CLK
+D => C[2].IN1
+D => C[0].IN1
+RST => FJK:I0.RST
+RST => FJK:I1.RST
+A <= FJK:I1.Q
+B <= FJK:I0.Q
+An <= FJK:I1.QN
+Bn <= FJK:I0.QN
+
+
+|SC|FJK:I0
+J => Mux0.IN4
+K => Mux0.IN5
+CLK => Q_int.CLK
+RST => Q_int.ACLR
+Q <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+QN <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|SC|FJK:I1
+J => Mux0.IN4
+K => Mux0.IN5
+CLK => Q_int.CLK
+RST => Q_int.ACLR
+Q <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+QN <= Q_int.DB_MAX_OUTPUT_PORT_TYPE
+
+

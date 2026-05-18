@@ -1,0 +1,35 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity MUX_P is 
+    port(
+        A, B, C, D, E, F, G, H: in std_logic;
+        S: in std_logic_vector (2 downto 0);
+        Z: out std_logic
+    );
+end MUX_P;
+
+architecture behav of MUX_P is 
+	begin 
+    process(A,B,C,D,E,F,G,H,S)
+    begin
+        if s = "000"then
+            Z <= A;
+        elsif s = "001" then
+            Z <= B;
+        elsif s = "010" then
+            Z <= C;
+        elsif s = "011" then
+            Z <= D;
+        elsif s = "100" then
+            Z <= E;
+        elsif s = "101" then
+            Z <= F;
+        elsif s = "110" then
+            Z <= G;
+        else
+            Z <= H;
+        end if;
+    end process;
+          
+end behav;

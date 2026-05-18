@@ -1,0 +1,61 @@
+|contador
+clk => frec:u0.clk
+reset_a => count[0].ACLR
+reset_a => count[1].ACLR
+reset_a => count[2].ACLR
+reset_a => count[3].ACLR
+load => count.OUTPUTSELECT
+load => count.OUTPUTSELECT
+load => count.OUTPUTSELECT
+load => count.OUTPUTSELECT
+updwon => count.OUTPUTSELECT
+updwon => count.OUTPUTSELECT
+updwon => count.OUTPUTSELECT
+updwon => count.OUTPUTSELECT
+data[0] => count.DATAB
+data[1] => count.DATAB
+data[2] => count.DATAB
+data[3] => count.DATAB
+counter[0] << count[0].DB_MAX_OUTPUT_PORT_TYPE
+counter[1] << count[1].DB_MAX_OUTPUT_PORT_TYPE
+counter[2] << count[2].DB_MAX_OUTPUT_PORT_TYPE
+counter[3] << count[3].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|contador|frec:u0
+clk => clock.CLK
+clk => count[0].CLK
+clk => count[1].CLK
+clk => count[2].CLK
+clk => count[3].CLK
+clk => count[4].CLK
+clk => count[5].CLK
+clk => count[6].CLK
+clk => count[7].CLK
+clk => count[8].CLK
+clk => count[9].CLK
+clk => count[10].CLK
+clk => count[11].CLK
+clk => count[12].CLK
+clk => count[13].CLK
+clk => count[14].CLK
+clk => count[15].CLK
+clk => count[16].CLK
+clk => count[17].CLK
+clk => count[18].CLK
+clk => count[19].CLK
+clk => count[20].CLK
+clk => count[21].CLK
+clk => count[22].CLK
+clk => count[23].CLK
+clk => count[24].CLK
+clk => count[25].CLK
+clk => count[26].CLK
+clk => count[27].CLK
+clk => count[28].CLK
+clk => count[29].CLK
+clk => count[30].CLK
+clk => count[31].CLK
+clk_new <= clock.DB_MAX_OUTPUT_PORT_TYPE
+
+

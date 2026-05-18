@@ -1,0 +1,11 @@
+|FSM_Moore
+clk => state~2.DATAIN
+reset_a => state~4.DATAIN
+go => state.DATAA
+go => state.DATAB
+go => Selector0.IN1
+go => Selector0.IN0
+y[0] <= y_temp[0].DB_MAX_OUTPUT_PORT_TYPE
+y[1] <= y_temp[1].DB_MAX_OUTPUT_PORT_TYPE
+
+

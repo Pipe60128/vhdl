@@ -1,0 +1,19 @@
+|if_ex
+A[0] => y.DATAB
+A[0] => Equal0.IN3
+A[1] => y.DATAB
+A[1] => Equal0.IN2
+A[2] => y.DATAB
+A[2] => Equal0.IN1
+A[3] => y.DATAB
+A[3] => Equal0.IN0
+B[0] => Equal1.IN2
+B[1] => Equal1.IN1
+B[2] => Equal1.IN0
+B[3] => Equal1.IN3
+y[0] << y.DB_MAX_OUTPUT_PORT_TYPE
+y[1] << y.DB_MAX_OUTPUT_PORT_TYPE
+y[2] << y.DB_MAX_OUTPUT_PORT_TYPE
+y[3] << y.DB_MAX_OUTPUT_PORT_TYPE
+
+

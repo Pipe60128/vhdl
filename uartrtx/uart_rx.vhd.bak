@@ -1,0 +1,66 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity uart_rx is
+    port(
+        baud_clk: in std_logic;
+        rx_serial: in std_logic;
+        leds: out std_logic_vector(7 downto 0);
+        --seg7: out std_logic_vector(6 downto 0)
+    );
+end uart_rx;
+architecture behavior of uart_rx is 
+    type rx_state_FSM is (
+        RX_IDLE, 
+        RX_BIT0, RX_BIT1, RX_BIT2, RX_BIT3, RX_BIT4, RX_BIT5, RX_BIT6, RX_BIT7,
+        RX_DONE
+    );
+
+signal rx_state: rx_state_FSM := RX_IDLE;
+signal rx_shift:std_logic_vector(7 downto 0):= (others => '0');
+signal rx_byte: std_logic_vector(7 downto 0):= (others => '0');
+
+begin 
+    process(baud_clk)
+    begin 
+        if rising_edge (baud_clk) then 
+            case rx_state is 
+                when RX_IDLE =>
+                    if rx_serial = '0' then  -- Start bit detected
+                        rx_state <= RX_BIT0;
+                    end if;
+                when RX_BIT0 =>
+                    rx_shift(0) <= rx_serial;
+                    rx_state <= RX_BIT1;
+                when RX_BIT1 =>
+                    rx_shift(1) <= rx_serial;
+                    rx_state <= RX_BIT2;
+                when RX_BIT2 =>
+                    rx_shift(2) <= rx_serial;
+                    rx_state <= RX_BIT3;
+                when RX_BIT3 =>
+                    rx_shift(3) <= rx_serial;
+                    rx_state <= RX_BIT4;
+                when RX_BIT4 =>
+                    rx_shift(4) <= rx_serial;
+                    rx_state <= RX_BIT5;
+                when RX_BIT5 =>
+                    rx_shift(5) <= rx_serial;
+                    rx_state <= RX_BIT6;
+                when RX_BIT6 =>
+                    rx_shift(6) <= rx_serial;
+                    rx_state <= RX_BIT7;
+                when RX_BIT7 =>
+                    rx_shift(7) <= rx_serial;
+                    rx_state <= RX_DONE;
+                when RX_DONE =>
+                        rx_byte <= rx_shift;
+                        rx_state<= RX_IDLE; -- Return to idle state after receiving a byte
+                when others =>
+                    rx_state <= RX_IDLE;
+            end case;
+        end if;
+    end process;
+    leds <= rx_byte;  -- Display received byte on LEDs
+    
+end behavior;

@@ -1,0 +1,69 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- ENTITY: defines inputs and outputs
+entity CU is
+    Port (
+        opcode   : in  STD_LOGIC_VECTOR(5 downto 0);  -- Op5 to Op0
+        RegDst   : out STD_LOGIC;
+        ALUSrc   : out STD_LOGIC;
+        MemtoReg : out STD_LOGIC;
+        RegWrite : out STD_LOGIC;
+        MemRead  : out STD_LOGIC;
+        MemWrite : out STD_LOGIC;
+        Branch   : out STD_LOGIC;
+        ALUOp1   : out STD_LOGIC;
+        ALUOp0   : out STD_LOGIC
+    );
+end CU;
+
+-- ARCHITECTURE: defines behavior
+architecture Behavioral of CU is
+
+    -- Internal signal to group all outputs together
+    -- Order: RegDst|ALUSrc|MemtoReg|RegWrite|MemRead|MemWrite|Branch|ALUOp1|ALUOp0
+    signal controls : STD_LOGIC_VECTOR(8 downto 0);
+
+begin
+
+    -- Process that reacts every time opcode changes
+    process(opcode)
+    begin
+        case opcode is
+            -- R-format: opcode = 000000
+            -- RegDst=1, ALUSrc=0, MemtoReg=0, RegWrite=1,
+            -- MemRead=0, MemWrite=0, Branch=0, ALUOp1=1, ALUOp0=0
+            when "000000" => controls <= "100100010";
+
+            -- lw (load word): opcode = 100011
+            -- RegDst=0, ALUSrc=1, MemtoReg=1, RegWrite=1,
+            -- MemRead=1, MemWrite=0, Branch=0, ALUOp1=0, ALUOp0=0
+            when "100011" => controls <= "011110000";
+
+            -- sw (store word): opcode = 101011
+            -- RegDst=X, ALUSrc=1, MemtoReg=X, RegWrite=0,
+            -- MemRead=0, MemWrite=1, Branch=0, ALUOp1=0, ALUOp0=0
+            when "101011" => controls <= "0X0001000";
+
+            -- beq (branch if equal): opcode = 000100
+            -- RegDst=X, ALUSrc=0, MemtoReg=X, RegWrite=0,
+            -- MemRead=0, MemWrite=0, Branch=1, ALUOp1=0, ALUOp0=1
+            when "000100" => controls <= "0X0000101";
+
+            -- default: everything 0
+            when others   => controls <= "000000000";
+        endcase
+    end process;
+
+    -- Assign each bit of controls to its output signal
+    RegDst   <= controls(8);
+    ALUSrc   <= controls(7);
+    MemtoReg <= controls(6);
+    RegWrite <= controls(5);
+    MemRead  <= controls(4);
+    MemWrite <= controls(3);
+    Branch   <= controls(2);
+    ALUOp1   <= controls(1);
+    ALUOp0   <= controls(0);
+
+end Behavioral;

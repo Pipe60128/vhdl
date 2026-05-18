@@ -1,0 +1,82 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity uart_tx is 
+port(
+	baud_clk:in std_logic;
+	btn_send_n:in std_logic;
+	tx_data :in std_logic_vector(7 downto 0);
+	tx_serial:out std_logic
+);
+end uart_tx;
+
+Architecture behavior of uart_tx is 
+	type tx_state_FSM is (
+		tx_idle, tx_start, tx_bit0,tx_bit1,tx_bit2,
+		tx_bit3,tx_bit4,tx_bit5,tx_bit6,tx_bit7, tx_stop);
+		
+	signal tx_state : tx_state_FSM := tx_idle;
+		
+	begin 
+		process(baud_clk)
+		begin 
+			if rising_edge(baud_clk)then 
+			
+			case tx_state is 
+			when tx_idle =>
+				if btn_send_n ='0' then 
+					tx_state<= tx_start;
+				else
+					tx_state<= tx_idle;
+				end if;
+			
+			when tx_start => 
+				tx_state<= tx_bit0;
+			
+			when tx_bit0 => 
+				tx_state<= tx_bit1;
+			
+			when tx_bit1 => 
+				tx_state<= tx_bit2;
+				
+			when tx_bit2 => 
+				tx_state<= tx_bit3;
+			
+			when tx_bit3 => 
+				tx_state<= tx_bit4;
+			
+			when tx_bit4 => 
+				tx_state<= tx_bit5;
+				
+			when tx_bit5 => 
+				tx_state<= tx_bit6;
+			
+			when tx_bit6 => 
+				tx_state<= tx_bit7;
+			
+			when tx_bit7 => 
+				tx_state<= tx_stop;
+			
+			when tx_stop => 
+				if btn_send_n ='1' then 
+					tx_state<= tx_idle;
+				end if;
+				
+			when others =>
+				tx_state<= tx_idle;
+			end case;
+		end if; 
+		end process;	
+			
+		tx_serial<='1' when tx_state = tx_idle else
+						'0' when tx_state = tx_start else
+						tx_data(0) when tx_state = tx_bit0 else
+						tx_data(1) when tx_state = tx_bit1 else
+						tx_data(2) when tx_state = tx_bit2 else
+						tx_data(3) when tx_state = tx_bit3 else
+						tx_data(4) when tx_state = tx_bit4 else
+						tx_data(5) when tx_state = tx_bit5 else
+						tx_data(6) when tx_state = tx_bit6 else
+						tx_data(7) when tx_state = tx_bit7 else
+						'1';
+end behavior;

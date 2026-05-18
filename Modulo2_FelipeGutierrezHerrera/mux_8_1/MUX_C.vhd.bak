@@ -1,0 +1,32 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity MUX_C is 
+    port(C
+        A, B, C, D, E, F, G, H: in std_logic;
+        S: in std_logic_vector (2 downto 0);
+        Z: out std_logic
+    );
+end MUX_C;
+
+architecture behav of MUX_C is
+	signal SA,SB,SC,SD,SE,SF,SG,SH : std_logic;  
+	begin 
+	SA <= A;
+   SB <= B;
+   SC <= C;
+   SD <= D;
+   SE <= E;
+   SF <= F;
+   SG <= G;
+   SH <= H; 
+        with S select
+            Z <= SA when "000",
+                 SB when "001",
+                 SC when "010",
+                 SD when "011",
+                 SE when "100",
+                 SF when "101",
+                 SG when "110",
+                 SH when others;    
+end behav;

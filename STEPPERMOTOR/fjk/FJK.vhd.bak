@@ -1,0 +1,35 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY FJK IS
+    PORT (
+        J,K, CLK, RST : IN STD_LOGIC;
+        Q, QN: OUT STD_LOGIC
+    );
+END FJK;
+
+ARCHITECTURE behav OF FJK IS
+SIGNAL Q_int: std_logic;
+signal JK: std_logic_vector(1 downto 0);
+
+BEGIN
+
+    PROCESS (CLK, RST)
+    BEGIN
+    JK <= J & K;
+        IF RST = '1' THEN
+            Q_int <= '0';
+        ELSiF CLK'event AND CLK = '1' THEN
+            CASE JK IS
+                WHEN "00" => Q_int <= Q_int; -- No change
+                WHEN "01" => Q_int <= '0';    -- Reset
+                WHEN "10" => Q_int <= '1';    -- Set
+                WHEN "11" => Q_int <= NOT Q_int; -- Toggle
+                WHEN OTHERS => Q_int <= 'X'; -- Invalid state
+            END CASE;
+        END IF;
+    END PROCESS;
+
+    Q <= Q_int;
+    QN <= NOT Q_int;
+END behav;

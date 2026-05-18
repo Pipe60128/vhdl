@@ -1,0 +1,19 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity gray is
+	port(input: in std_logic_vector (2 downto 0);
+		  D_C: in std_logic;
+		  output: out std_logic_vector (2 odwnto 0)
+		  );
+end gray
+
+architecture behav for gray is 
+begin
+	output(2) <= input(2);
+	output(1) <= input(2) xor input(1);
+	
+	with D_C select
+		output(0) <= input(1) xor input(0) when '0',
+		input(2) xor input(1) xor input(0) when others;
+end behav

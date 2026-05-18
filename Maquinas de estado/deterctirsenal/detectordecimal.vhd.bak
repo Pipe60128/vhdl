@@ -1,0 +1,92 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity detectordecimal is 
+    port(clk: std_logic;
+        S: in std_logic;
+        led:  out std_logic_vector(4 downto 0);
+		  win: out std_logic
+    );
+end detectordecimal;
+
+architecture behav of detectordecimal is 
+	component frec is 
+	generic(
+        pulse: integer := 25000000
+    );
+    port(
+        clk: in std_logic;
+        clk_new: out std_logic
+    );
+	end component 
+	
+    type state_type is (S0, S1, S2, S3, S4);
+    signal state: state_type;
+	 signal clk_new: std_logic;
+
+    begin
+	 u0: frec port map (clk, clk_new)
+        estados: process(clk_new)
+        begin
+            if rising_edge(clk) then
+                case state is 
+                    when S0 =>
+                        if S = '1' then
+                            state <= S1;
+                        else
+                            state <= S0;
+                        end if;
+                    when S1 =>
+                        if S = '1' then
+                            state <= S2;
+                        else
+                            state <= S0;
+                        end if;
+                    when S2 =>
+                        if S = '0' then
+                            state <= S3;
+                        else
+                            state <= S2;
+                        end if;
+							when S3 =>
+                        if S = '1' then
+                            state <= S4;
+                        else
+                            state <= S1;
+                        end if;
+							when S4 =>
+                        if S = '1' then
+                            state <= S2;
+                        else
+                            state <= S1;
+                        end if;
+                end case;
+            end if;
+        end process estados;
+
+        salida: process(state, go)
+        begin 
+            case state is
+                when S0 =>
+                    if go = '1' then
+                        y <= "01";
+                    else 
+                        y <= "00";
+                    end if;
+                when S1 =>
+                    if go = '1' then
+                        y <= "10";
+                    else 
+                        y <= "01";
+                    end if;
+                when S2 =>
+                    if go = '1' then
+                        y <= "00";
+                    else 
+                        y <= "10";
+                    end if;
+                when others =>
+                    y <= "00";
+            end case;
+        end process salida;
+end behav;  

@@ -1,0 +1,24 @@
+library library ieee;
+use ieee.std_logic_1164.all;
+
+entity contadoreset is
+    port(
+        clk: in std_logic;
+        reset_a: in std_logic;
+        counter: out std_logic_vector(3 downto 0)
+    );
+end contadoreset;
+
+architecture behav of contadoreset is
+    signal count: std_logic_vector(3 downto 0) := "0000";
+    begin 
+
+    Process(clk, reset_a)
+    begin 
+        if reset_a ='1' then
+            count <= "0000";-- (others=>"0")
+        elsif rising_edge(clk) then
+            count <= count + 1;
+        end if;
+    end process;
+end

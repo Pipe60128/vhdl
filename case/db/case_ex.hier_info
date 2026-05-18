@@ -1,0 +1,6 @@
+|case_ex
+S[0] => y.DATAIN
+S[1] => ~NO_FANOUT~
+y << S[0].DB_MAX_OUTPUT_PORT_TYPE
+
+

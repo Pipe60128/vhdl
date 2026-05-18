@@ -1,0 +1,72 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity FSM_Mealy is 
+    port(
+        clk: in std_logic;
+        reset_a: in std_logic;
+        go: in std_logic;
+        y: out std_logic_vector(1 downto 0)
+    );
+end FSM_Mealy;
+
+architecture behav of FSM_Mealy is 
+    type state_type is (S0, S1, S2);
+    signal state: state_type;
+    signal y_temp: std_logic_vector(1 downto 0);
+
+    begin
+        estados: process(clk, reset_a)
+        begin
+            if reset_a = '1' then
+                state <= S0;
+            eslif rising_edge(clk) then
+                case state is 
+                    when S0 =>
+                        if go = '1' then
+                            state <= S1;
+                        else
+                            state <= S0;
+                        end if;
+                    when S1 =>
+                        if go = '1' then
+                            state <= S2;
+                        else
+                            state <= S1;
+                        end if;
+                    when S2 =>
+                        if go = '1' then
+                            state <= S2;
+                        else
+                            state <= S1;
+                        end if;
+                end case;
+            end if;
+        end process estados;
+
+        salida: process(state, go)
+        begin 
+            case state is
+                when S0 =>
+                    if go = '1' then
+                        y <= "01";
+                    else 
+                        y <= "00";
+                    end if;
+                when S1 =>
+                    if go = '1' then
+                        y <= "10";
+                    else 
+                        y <= "01";
+                    end if;
+                when S2 =>
+                    if go = '1' then
+                        y <= "00";
+                    else 
+                        y <= "10";
+                    end if;
+                when others =>
+                    y <= "00";
+            end case;
+        end process salida;
+end behav;  

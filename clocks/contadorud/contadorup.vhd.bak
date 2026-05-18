@@ -1,0 +1,36 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity contadorup is
+    generic(
+        N: integer := 4
+    );
+    port(
+        clk: in std_logic;
+        reset_a: in std_logic;
+        load: in std_logic;
+        updwon: in std_logic;
+        data: in std_logic_vector(N-1 downto 0);
+        counter: out std_logic_vector(N-1 downto 0)
+    );
+end contadorup;
+
+architecture behav of contadorup is
+    signal count: std_logic_vector(N-1 downto 0) := (others=>"0");
+    begin 
+
+    Process(clk, reset_a)
+    begin 
+        if reset_a ='1' then
+            count <= (others=>"0");
+        elsif load = '1' then
+            count <= data;
+        elsif rising_edge(clk) then
+            if updwon = '1' then
+                count <= count + 1;
+            else
+                count <= count - 1;
+            end if;
+        end if;
+    end process;
+end

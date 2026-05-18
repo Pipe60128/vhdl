@@ -1,0 +1,24 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity if_ex is 
+    port(A, B: in std_logic_vector (3 downto 0);
+        y: out std_logic_vector (3 downto 0)
+    );
+end if_ex;
+
+
+architecture behav of if_ex is
+begin
+    process(A, B)
+    begin
+        if A = '0001' then
+            y <= '1010';
+        elsif B = '1000' then
+            y <= A;
+        else
+            y <= '0010';
+        end if;
+    end process;
+
+end behav;

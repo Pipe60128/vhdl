@@ -1,0 +1,45 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "rayaizq[0]",
+					"strict" : false
+				},
+				{
+					"name" : "rayaizq[1]",
+					"strict" : false
+				},
+				{
+					"name" : "rayaizq[2]",
+					"strict" : false
+				},
+				{
+					"name" : "rayader[0]",
+					"strict" : false
+				},
+				{
+					"name" : "rayader[1]",
+					"strict" : false
+				},
+				{
+					"name" : "rayader[2]",
+					"strict" : false
+				},
+				{
+					"name" : "switch[0]",
+					"strict" : false
+				},
+				{
+					"name" : "switch[1]",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
